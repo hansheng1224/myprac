@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        .box {
+            /* margin: 0; */
+            /* height: 70vh; */
+        }
+
+        /* #f1 {
+            background-color: aquamarine;
+            height: 300px;
+        } */
+
+        #f2 {
+            background-color: blue;
+            height: 70vh;
+
+        }
+
+        #f3 {
+            background-color: lightpink;
+            height: 70vh;
+
+        }
+    </style>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+
+
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#f1">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#f2">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#f3">Link</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown">Dropdown</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Link</a></li>
+                            <li><a class="dropdown-item" href="#">Another link</a></li>
+                            <li><a class="dropdown-item" href="#">A third link</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="text" placeholder="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-1 box " id="f1">
+
+        <!-- Carousel -->
+        <div id="demo" class="carousel slide " data-bs-ride="carousel">
+
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            </div>
+
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+                <div class="carousel-item active mt-2">
+                    <img src="https://picsum.photos/id/1002/960/300" alt="Los Angeles" class="d-block"
+                        style="width: 100%;">
+                    <div class="carousel-caption">
+                        <h3>Los Angeles</h3>
+                        <p>We had such a great time in LA</p>
+                        <a href="www.google.com">google</a>
+                    </div>
+                </div>
+                <div class="carousel-item mt-2">
+                    <img src="https://picsum.photos/id/1003/960/300" alt="Chicago" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h3>Los Angeles</h3>
+                        <p>We had such a great time in LA</p>
+                        <a href="www.google.com">google</a>
+                    </div>
+                </div>
+                <div class="carousel-item mt2">
+                    <img src="https://picsum.photos/id/1004/960/300" alt="New York" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h3>Los Angeles</h3>
+                        <p>We had such a great time in LA</p>
+                        <a href="www.google.com">google</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+
+    </div>
+    <div class="container-fluid mt-1 box" id="f2">
+        <h3>Navbar With Dropdown</h3>
+        <p>This example adds a dropdown menu in the navbar.</p>
+    </div>
+    <div class="container-fluid mt-1 box" id="f3">
+        <h3>Navbar With Dropdown</h3>
+        <p>This example adds a dropdown menu in the navbar.</p>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
