@@ -7,12 +7,31 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <script>
+        document.write(5+6);
+    </script>
+    <script>
+        document.write(5+8);
+    </script>
+
+    <p id="myText1">myText1</p>
+    <p id="myText2">myText2</p>
+    <p id="myText3">myText3</p>
 
     <script>
         let i = 1;
         i = i + 1;
         console.log(i);
+        console.log(console);
+
+        const myText1Input=document.getElementById('myText1');
+        console.log(myText1Input);
+
+        document.getElementById('myText1').innerText='<hr>123456';
+        document.getElementById('myText2').textContent="<hr>67890";
+        document.getElementById('myText3').innerHTML="<hr>html";
+        myText1Input.innerText='change ok';
+
     </script>
 </body>
 </html>
