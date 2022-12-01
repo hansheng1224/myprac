@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>Document</title>
+
+</head>
+<body>
+    
+   <script>
+
+    let myArr = [1,2,3,4,5,6,7,8,9,10];
+    console.log('myArr',myArr);
+    console.log('myArr[0]',myArr[0]);
+    console.log('myArr[1]',myArr[1]);
+    console.log('myArr[2]',myArr[2]);
+
+    for (let i = 0 ; i< myArr.length; i++){
+        console.log('key',i);
+        console.log('value',myArr[i]);
+    }
+
+    let sum1=0;
+    let sum2=0
+    //偶數
+    for(x of myArr){
+        if(x%2==0){
+            sum1+=Number(x);
+        }
+    }
+    console.log('sum1',sum1);
+    //奇數
+    myArr.forEach(function(x) {
+        // console.log(typeof(x));
+        // console.log(typeof(sum));
+        if (x%2==1){
+            sum2 += Number(x);
+        }
+    })
+    console.log('sum2',sum2);
+
+   </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
