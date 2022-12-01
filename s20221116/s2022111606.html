@@ -7,7 +7,22 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <p>Num1 = <span id="mySpan1">0</span> </p>
+    </div>
+    <div>
+        <p>Num2 = <span id="mySpan2">0</span> </p>
+    </div>
+    <div>
+        <p>sum = <span id="sum">0</span> </p>
+    </div>
+
+    <button type="button" onclick="test();">testBtn</button>
+
     <script>
+        function test(){
+
+        
         let getNum1 = Number(prompt('num1?'));
         let getNum2 = Number(prompt('num2?'));
         myNum1 = 123;
@@ -15,9 +30,10 @@
         
         let sum=getNum1+getNum2;
         console.log(sum);
+      
         // document.write(myNum1);
 
-
+    }
     </script>
 
 </body>

@@ -7,17 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h3 id="myH3">text</h3>
     <script>
-        
-        let myName = prompt('Name ?');
-        console.log(myName);
-        document.getElementById('myH3').innerText = myName;
-
-        let myVar = 'text myVar';
-        function myFun(){
-            console.log('myFun ok');
-            // return '55688';
+        let score = Number(prompt("score?"));
+        if(score >= 60){
+            console.log('You are safe, Your score is:',score);
+        }else{
+            console.log('你被當了 Your score is :',score);
         }
 
     </script>
