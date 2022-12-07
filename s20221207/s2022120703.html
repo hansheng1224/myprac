@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <button type="button" id="myBtn">myBtn</button>
+    <button type="button" id="myBtn2">myBtn2</button>
+    <button type="button" id="myBtn3">myBtn3</button>
+
+    <script>
+        let employeeArr=[3,4,5,6,7,];
+        let employeeBonusArr = employeeArr.map((value,key)=>{
+            return value*2;
+        });
+        console.log(employeeBonusArr);
+
+        let i=0;
+        let sum=employeeBonusArr.reduce((total,value)=>{
+            i++;
+            console.log('i',i);
+            console.log('total',total);
+            console.log('value',value);
+            return total+value;
+        },100);
+        console.log('sum',sum);
+
+        let employeeArrFilter=employeeArr.filter((value)=>{
+            return value<5;
+        });
+
+        console.log('employeeArr',employeeArr);
+        console.log('employeeArrFilter',employeeArrFilter);
+
+        emplyeeArr=[3,4,5,6,7,];
+        let bonusArr=[];
+        employeeArr.forEach((value,key)=>{
+            let newValue=value*2;
+            bonusArr.push(newValue);
+        })
+        console.log('bonusArr',bonusArr);
+
+        let sumValue=100;
+        bonusArr.forEach((value,key)=>{
+            sumValue += value;
+        });
+        console.log('sumValue',sumValue);
+
+        let filterArr=[];
+        bonusArr.forEach((value,key)=>{
+            if(value>10){
+                filterArr.push(value);
+            }
+        });
+        console.log('filterArr',filterArr);
+
+
+    </script>
+
+</body>
+</html>

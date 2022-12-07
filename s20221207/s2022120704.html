@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let cellPhone={
+            'iphone':30000,
+            'google':25000,
+            'samsung':26500,
+            'HTC':12800,
+            'LG':8900
+        }
+        console.log('cellPhone',cellPhone);
+
+        let multiMobileArr=[
+            {
+                'name':'iphone',
+                'price':30000,
+                'location':['北','中','南']
+            },{
+                'name':'google',
+                'price':25000,
+                'location':['北','中','南']
+            },
+            {
+                'name':'samsung',
+                'price':26500,
+                'location':['北','中','南']
+            },
+            {
+                'name':'HTC',
+                'price':12800,
+                'location':['北','中','南']
+            },
+            {
+                'name':'LG',
+                'price':8900,
+                'location':['北','中','南']
+            },
+        ];
+        console.log('multiMobileArr',multiMobileArr);
+
+        let sum=0;
+        multiMobileArr.forEach((value,key)=>{
+            console.log(`${key}=>`,value);
+            console.log('value.price=>',value.price);
+            sum += value.price;
+        });
+
+        let myObj2={
+            'obj1' : {
+                'name':'iphone',
+                'price':30000,
+                'location':['北','中','南']
+            },
+            'obj2' : {
+                'name':'google',
+                'price':25000,
+                'location':['北','中','南']
+            },
+            'obj3' : {
+                'name':'samsung',
+                'price':26500,
+                'location':['北','中','南']
+            },
+            'obj4' : {
+                'name':'HTC',
+                'price':12800,
+                'location':['北','中','南']
+            },
+            'obj5' : {
+                'name':'LG',
+                'price':8900,
+                'location':['北','中','南']
+            },
+        };
+        console.log('myObj2',myObj2);
+            
+
+    </script>
+</body>
+</html>

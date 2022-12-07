@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //設定物件
+        let obj={
+            //物件構成元素
+            //物件中屬性有資料隱藏及避免被修改的功用
+            'name' : '小名',
+            'age' : 18,
+            'address' : '泰山xxx',
+            'location' : {'key','value test'},
+            //物件構成元素方法
+            //主要提供物件處理服務
+            'helloFun' : function(){
+                // console.log('hello');
+                console.log('this.name',this.name);//指上一層的物件也就是所在的物件obj
+                let str=`Hello 我是${this.name},今年${this.age}歲　${this.location,key}`;
+                console.log(str);
+            },
+            'sleepFun' : ()=>{//箭頭函式沒有自己的this,arguments,super或new.target所以無法使用this
+                console.log('sleep...');
+            }
+        }
+
+        console.log('obj',obj);
+        obj.name;
+        console.log('obj.name',obj.name);
+        obj.age;
+        console.log('obj.age',obj.age);
+        obj.helloFun();
+
+    </script>
+</body>
+</html>
