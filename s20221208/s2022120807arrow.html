@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+
+</head>
+<body>
+    <h3>arrow</h3>
+
+
+    <script>
+        //arrow function
+
+        // let myFun=function(data){
+        //     return data*2;
+        // }
+        // 1.function  =>
+        // 2.如果只有一個變數 () 可以省略
+        //   如果兩個以上變數 () 不可以省略
+        //   沒有變數  () 不可以省略
+        // 3.return 只有一行 {} 可以省略
+        //   return 兩行以上 {} 不可以省略
+        let myFun=(data)=>data*2;
+        // let myFun=(data,value)=>data*2;
+        // let myFun=()=>data*2;
+
+        console.log(myFun(3));
+        console.log(myFun(5));
+        console.log(myFun(10));
+
+        function sum (num1,num2){
+            return num1+num2;
+        }
+        let result=sum(10,200);
+        console.log('result',result);
+
+        let arrowFun = (num1,num2) => num1 + num2;
+        let resultArrow = arrowFun(3,5);
+        console.log('resultArrow',resultArrow);
+        
+    </script>
+   
+    
+</body>
+</html>

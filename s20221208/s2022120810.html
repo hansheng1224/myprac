@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <title>Document</title>
+    <style>
+        .red{
+            color:red;
+        }
+
+        .green{
+            color:green;
+        }
+    </style>
+
+</head>
+<body>
+    <p id="myP"></p>
+    <!-- jquery ? -->
+
+    <!-- boostrap 別人寫好的css -->
+    <!-- bs 1. 載入 -->
+    <!-- bs 2. cdn js 載入 -->
+
+
+    <!-- jquery 別人寫好的 javascript -->
+    <!-- jq 1. 載入 -->
+    <!-- jq 2. cdn js載入 -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(function(){
+            $('myP').text('hello jquery');
+            const myPJs=document.getElementById('myP');
+            const myPJq=$('#myP');
+            console.log('myPJs',myPJs);
+            console.log('myPJq',myPJq);
+
+            myPJq.text('hello JQuery');
+            myPJq.attr('class','red');
+
+            // myPJs.innerText='hello JS';
+            // myPJs.setAttribute('class','red');
+        });
+    </script>
+   
+    
+</body>
+</html>
