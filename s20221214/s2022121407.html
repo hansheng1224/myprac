@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            background-color: lightpink;
+            width: 800px;
+            height: 30px;
+        }
+
+        .box2{
+            background-color: lightblue;
+            width: 800px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+
+    </div>
+
+    <div class="box2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam adipisci facilis voluptas architecto voluptates eligendi natus rerum eos iure repellendus impedit, deleniti quisquam explicabo unde porro molestiae quaerat culpa odit velit corrupti id voluptate dolorum nostrum ex. Voluptatibus alias aspernatur, consequuntur sapiente sit laudantium ullam corrupti. Ad illum atque repellendus?
+    </div>
+    
+
+    <button type="button" id="slideUpBtn">slideUp</button>
+    <button type="button" id="slideDownBtn">slideDown</button>
+    <button type="button" id="slideToggleBtn">slideToggle</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+        integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        
+        $(function(){
+            
+            $('.box1').click(function(){
+                $('.box2').slideToggle();                 
+            });
+            $('#slideUpBtn').on('click',function(){
+                $('.box2').css("color","red").slideUp(2000).slideDown(2000).slideUp(2000).slideDown(2000);
+            });
+            $('#slideDownBtn').click(function(){
+                $('.box2').slideDown(3000,function(){
+                    alert('收費10000');
+                });
+            });
+            $('#slideToggleBtn').click(function(){
+                $('.box2').slideToggle();
+            });
+        });
+    </script>
+</body>
+</html>
