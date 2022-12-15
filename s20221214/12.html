@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width:800px;
+            height:50px;
+            background-color: lightpink;
+        }
+
+        .box2{
+            width:800px;
+            height:200px;
+            background-color: lightblue;
+        }
+    </style>
+   
+</head>
+<body>
+    <h3>elect change animate</h3>
+    <select name="" id="">
+        <option value="1">hide</option>
+        <option value="2">fade</option>
+        <option value="3">slide</option>
+    </select>
+
+    <div class="box1"></div>
+    <div class="box2">
+        Hello
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+        integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        
+        $(function(){
+           const box2 = $('.box2');
+            //對class="box1"作動。click後callback function{}
+           $('.box1').click(function(){
+            console.log('box1 ok');
+            let getSelectVal=Number($('select').val());//對<select>選擇器作動取得val
+                console.log('getSelectVal', getSelectVal);
+                console.log('getSelectVal typeof', typeof (getSelectVal));
+
+            switch (getSelectVal) {
+                case 1:
+                    box2.toggle();//case 1 時呼叫toggle()(hide()/show())
+                    box2.text('Hello Hide');//更改box2的文字內容
+                break;
+                
+                case 2:
+                    box2.fadeToggle(2000);//呼叫fadeToggle()延遲2000毫秒(fadeIN()/fadeOut())
+                    box2.text('Hello Hide');
+                break;
+
+                case 3:
+                    box2.slideToggle(2000);//呼叫slideToggle()延遲2000毫秒(slideUp()/slideDown())
+                    box2.text('Hello Slide') 
+                break;
+
+                default:
+                    break;
+            }
+           })
+
+        });
+                      
+    </script>
+</body>
+</html>
