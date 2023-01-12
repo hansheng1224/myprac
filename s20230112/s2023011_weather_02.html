@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <h3 class="text-center">天氣預報資料</h3>
+    <ul id="myUl">
+
+    </ul>
+    <button type="button" class="btn btn-primary" id="myBtn">Print</button>
+    <button type="button" class="btn btn-primary select-btn" data-location="新北市" id="newTaipeiBtn">新北市</button> 
+    <button type="button" class="btn btn-primary select-btn" data-location="桃園市" id="taoyuanBtn">桃園市</button> 
+    <button type="button" class="btn btn-primary select-btn" data-location="高雄市" id="taoyuanBtn">高雄市</button>
+
+    <div class="container mt-3">
+        <table class="table table-striped text-left" id="example">
+            <thead>
+                <tr>
+                    <th class="w-3" style="width: 5%;">序號</th>
+                    <th style="width: 10%;">縣市</th>
+                    <th><span id="time1">time1</span>低-高溫</th>
+                    <th><span id="time2">time2</span>低-高溫</th>
+                    <th><span id="time3">time3</span>低-高溫</th>
+                </tr>
+            </thead>
+            <tbody id="Tbody">
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <button id="myBtn">print</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+        integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script>
+        //https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-96D74FED-D94C-4F99-9DAF-249CA6907DA5
+
+        $(function () {
+            function allData(){
+                $.each(data,function(key,value){
+                    showData(key,value);
+                })
+            }
+
+            function eachAllData(locationName){
+                $.each(data, function (key, value) {              
+                    if (value.locationName == locationName) {       
+                        showData(key, value);   
+                    }
+                })
+            }
+
+            function showData(key,value) {
+                let text1 = `
+                    ${value.weatherElement[2].time[0].parameter.parameterName} - ${value.weatherElement[4].time[0].parameter.parameterName} ${value.weatherElement[3].time[0].parameter.parameterName}
+                    `;
+                let text2 = `
+                    ${value.weatherElement[2].time[1].parameter.parameterName} - ${value.weatherElement[4].time[1].parameter.parameterName} ${value.weatherElement[3].time[1].parameter.parameterName}
+                    `;
+                let text3 = `
+                    ${value.weatherElement[2].time[2].parameter.parameterName} - ${value.weatherElement[4].time[2].parameter.parameterName} ${value.weatherElement[3].time[2].parameter.parameterName}
+                    `;
+                let paramenterName1 = value.weatherElement[0].time[0].parameter.parameterName;
+                let paramenterName2 = value.weatherElement[0].time[1].parameter.parameterName;
+                let paramenterName3 = value.weatherElement[0].time[2].parameter.parameterName;
+                let paramenterValue1 = value.weatherElement[0].time[0].parameter.parameterValue;
+                let paramenterValue2 = value.weatherElement[0].time[1].parameter.parameterValue;
+                let paramenterValue3 = value.weatherElement[0].time[2].parameter.parameterValue;
+                // console.log(paramenterValue1);
+                console.log(text1);
+                textContext = `
+                    <tr>
+                        <td>${key + 1}</td> 
+                        <td>${value.locationName}</td>
+                        <td>
+                            ${text1}
+                            <img src="./img/day/${paramenterValue1}.svg" alt="${paramenterName1}" title="${paramenterName1}" width="50px"</td>
+                        <td> 
+                            ${text2}
+                            <img src="./img/day/${paramenterValue2}.svg" alt="${paramenterName2}" title="${paramenterName2}" width="50px"</td>
+                        <td> 
+                            ${text3}
+                            <img src="./img/day/${paramenterValue3}.svg" alt="${paramenterName3}" title="${paramenterName3}" width="50px"</td>
+                    </tr>
+                    `;
+                Tbody.append(textContext);             
+            }
+
+            const myUl = $('#myUl');
+            const myBtn = $('#myBtn');
+            const Tbody = $('#Tbody');
+            const time1 = $('#time1');
+            const time2 = $('#time2');
+            const time3 = $('#time3');
+            const newTaipeiBtn = $('#newTaipeiBtn');
+            const taoyuanBtn=$('#taoyuanBtn');
+            const selectBtn = $('.select-btn');
+
+            let data={};
+
+            myBtn.click(function () {
+                window.print();
+            });
+
+            // newTaipeiBtn.click(function(){
+            //     console.log('data',data);
+            //     console.log($(this).data('location'));
+            //     Tbody.html('');
+            //     let getLocation = $(this).data('location');  
+            //     console.log(getLocation);
+            //     $.each(data, function (key, value) {              
+            //         if (value.locationName == getLocation) {       
+            //             showData(key, value);    
+            //         }
+            //     })
+            // })
+
+            // taoyuanBtn.click(function(){
+            //     Tbody.html('');               
+            //     let getLocation = $(this).data('location');  
+            //     eachAllData(getLocation);
+            // })
+            
+            selectBtn.click(function(){
+                Tbody.html('');               
+                let getLocation = $(this).data('location');  
+                eachAllData(getLocation);
+            })
+            //ajax 範本
+            $.ajax({
+                url: "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-96D74FED-D94C-4F99-9DAF-249CA6907DA5",
+                type: 'get',
+                dataType: 'json',
+                success: function (res) {
+                    console.log('res', res);
+                    data = res.records.location;
+
+                    timeText1 = data[0].weatherElement[2].time[0].startTime;
+                    timeText2 = data[0].weatherElement[2].time[1].startTime;
+                    timeText3 = data[0].weatherElement[2].time[2].startTime;
+                    time1.text(timeText1);
+                    time2.text(timeText2);
+                    time3.text(timeText3);
+
+                    // console.log('data',data);
+                    // console.log('data typeof',typeof(data));
+                    // console.log('data[0]',data[0]);
+                    // console.log('data[0].locationName',data[0].locationName);
+                    // console.log('data[0].locationName typeof',typeof(data[0].locationName));
+
+                    // console.log('data[19]',data[19]);
+                    // console.log('data[19].locationName',data[19].locationName);
+                    // console.log('data[21]',data[21]);
+                    // console.log('data[21].locationName',data[21].locationName);
+
+
+                    // console.log('data[19].weatherElement[2].time[0].parameter.parameterName',data[19].weatherElement[2].time[0].parameter.parameterName);
+                    // console.log('data[19].weatherElement[4].time[0].parameter.parameterName',data[19].weatherElement[4].time[0].parameter.parameterName);
+                    // console.log('data[21].weatherElement[2].time[0].parameter.parameterName',data[21].weatherElement[2].time[0].parameter.parameterName);
+                    // console.log('data[21].weatherElement[4].time[0].parameter.parameterName',data[21].weatherElement[4].time[0].parameter.parameterName);
+
+
+
+                    // $.each(data, function (key, value) {
+                    //     let mintmp = value.weatherElement[2].time[0].parameter.parameterName;
+                    //     let maxtmp = value.weatherElement[4].time[0].parameter.parameterName;
+                    //     // console.log(key);
+                    //     // console.log(value.locationName);
+                    //     let textContext = `
+                    //         ${key + 1} ${value.locationName} ${mintmp} - ${maxtmp}<br>
+                    //     `;
+
+
+                    //     $.each(data,function(key,value){
+                    //         // console.log(key);
+                    //         // console.log(value.locationName);
+
+                    //         let paramenterName1 = value.weatherElement[0].time[0].parameter.parameterName;
+                    //         let paramenterName2 = value.weatherElement[0].time[1].parameter.parameterName;
+                    //         let paramenterName3 = value.weatherElement[0].time[2].parameter.parameterName;
+                    //         let paramenterValue1 = value.weatherElement[0].time[0].parameter.parameterValue;
+                    //         let paramenterValue2 = value.weatherElement[0].time[1].parameter.parameterValue;
+                    //         let paramenterValue3 = value.weatherElement[0].time[2].parameter.parameterValue;
+                    //         console.log(paramenterValue1);
+                    //         let textContext = `
+                    //             <tr>
+                    //                 <td>${key+1}</td> 
+                    //                 <td>${value.locationName}</td>
+                    //                 <td>${value.weatherElement[2].time[0].parameter.parameterName} - ${value.weatherElement[4].time[0].parameter.parameterName} ${value.weatherElement[3].time[0].parameter.parameterName} <img src="./img/day/${paramenterValue1}.svg" alt="" title="" width="50px"></td>
+                    //                 <td>${value.weatherElement[2].time[1].parameter.parameterName} - ${value.weatherElement[4].time[1].parameter.parameterName} ${value.weatherElement[3].time[1].parameter.parameterName} <img src="./img/day/${paramenterValue2}.svg" alt="" title="" width="50px"></td>
+                    //                 <td>${value.weatherElement[2].time[2].parameter.parameterName} - ${value.weatherElement[4].time[2].parameter.parameterName} ${value.weatherElement[3].time[2].parameter.parameterName} <img src="./img/day/${paramenterValue3}.svg" alt="" title="" width="50px"></td>
+                    //             </tr>
+                    //         `;
+                    //     Tbody.append(textContext);
+                    // })
+                    let textContext = '';
+                    $.each(data, function (key, value) {
+                        // console.log(key);
+                        // console.log(value.locationName);
+                        let text1 = `
+                            ${value.weatherElement[2].time[0].parameter.parameterName} - ${value.weatherElement[4].time[0].parameter.parameterName} ${value.weatherElement[3].time[0].parameter.parameterName}
+                            `;
+                        let text2 = `
+                            ${value.weatherElement[2].time[1].parameter.parameterName} - ${value.weatherElement[4].time[1].parameter.parameterName} ${value.weatherElement[3].time[1].parameter.parameterName}
+                            `;
+                        let text3 = `
+                            ${value.weatherElement[2].time[2].parameter.parameterName} - ${value.weatherElement[4].time[2].parameter.parameterName} ${value.weatherElement[3].time[2].parameter.parameterName}
+                            `;
+                        let paramenterName1 = value.weatherElement[0].time[0].parameter.parameterName;
+                        let paramenterName2 = value.weatherElement[0].time[1].parameter.parameterName;
+                        let paramenterName3 = value.weatherElement[0].time[2].parameter.parameterName;
+                        let paramenterValue1 = value.weatherElement[0].time[0].parameter.parameterValue;
+                        let paramenterValue2 = value.weatherElement[0].time[1].parameter.parameterValue;
+                        let paramenterValue3 = value.weatherElement[0].time[2].parameter.parameterValue;
+                        // console.log(paramenterValue1);
+                        textContext += `
+                                <tr>
+                                    <td>${key + 1}</td> 
+                                    <td>${value.locationName}</td>
+                                    <td>
+                                        ${text1}
+                                        <img src="./img/day/${paramenterValue1}.svg" alt="${paramenterName1}" title="${paramenterName1}" width="50px"></td>
+                                    <td> 
+                                        ${text2}
+                                        <img src="./img/day/${paramenterValue2}.svg" alt="${paramenterName2}" title="${paramenterName2}" width="50px"></td>
+                                    <td> 
+                                        ${text3}
+                                        <img src="./img/day/${paramenterValue3}.svg" alt="${paramenterName3}" title="${paramenterName3}" width="50px"></td>
+                                </tr>
+                            `;
+                    })
+                    Tbody.append(textContext);
+
+                    $('#example').DataTable({
+                        language: {
+                            "lengthMenu": "顯示 _MENU_ 筆資料",
+                            "sProcessing": "處理中...",
+                            "sZeroRecords": "没有匹配结果",
+                            "sInfo": "目前有 _MAX_ 筆資料",
+                            "sInfoEmpty": "目前共有 0 筆紀錄",
+                            "sInfoFiltered": " ",
+                            "sInfoPostFix": "",
+                            "sSearch": "搜尋:",
+                            "sUrl": "",
+                            "sEmptyTable": "尚未有資料紀錄存在",
+                            "sLoadingRecords": "載入資料中...",
+                            "sInfoThousands": ",",
+                            "oPaginate": {
+                                "sFirst": "首頁",
+                                "sPrevious": "上一頁",
+                                "sNext": "下一頁",
+                                "sLast": "末頁"
+                            },
+                            "order": [[0, "desc"]],
+                            "oAria": {
+                                "sSortAscending": ": 以升序排列此列",
+                                "sSortDescending": ": 以降序排列此列"
+                            }
+                        },
+                    });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            //ajax end
+        });
+
+    </script>
+</body>
+
+</html>
