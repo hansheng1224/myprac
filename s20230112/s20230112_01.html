@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let getDate = new Date();
+        console.log('getDate',getDate);
+        console.log('getData typeof',typeof(getDate));
+        let month = getDate.getMonth();
+        console.log('month',month); 
+        let year = getDate.getFullYear();
+        console.log('year',year);
+        let date = getDate.getDate();
+        console.log('date',date);
+
+        if (month<2){
+            year-=year;
+            switch(month){
+                case 0:
+                    month=10;
+                    break;
+                case 1:
+                    month=11;
+                    break;
+                case 2:
+                    month=12;
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            month += month;
+        }
+        console.log(year);
+        console.log(month);
+
+        let newDate = new Date(`${year}/${month}/${date}`);
+        console.log('newDate',newDate);
+
+
+    </script>
+</body>
+</html>

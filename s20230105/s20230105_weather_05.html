@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
+</head>
+
+<body>
+    <div>
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>no.</th>
+                    <th>location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td></td>
+                    <td></td>
+                </tr> -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>no.</th>
+                    <th>location</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+        integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+    
+
+    <script>
+        $(function () {
+
+            const tbody = $('tbody');
+
+            $.ajax({
+                url: "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-96D74FED-D94C-4F99-9DAF-249CA6907DA5",
+                type: "get",
+                dataType: 'json',
+                success: function (res) {
+                    console.log('res', res);
+                    console.log('res.records', res.records);
+                    console.log('res.records.location', res.records.location);
+
+                    let contentText="";
+                    $.each(res.records.location,function(key,value){
+                        contentText += `
+                            <tr>
+                                <td>${key+1}</td>
+                                <td>${value.locationName}</td>
+                            </tr>
+                            `;
+                    })
+                    tbody.append(contentText);
+                    $('#example').DataTable();
+
+                    // $.each(res.records.location, function () {
+                    //     console.log('key', key);
+                    //     console.log('value', value);
+                    //     console.log('value', locationName);
+                    // })
+
+                    // let contentText=`
+                    // <tr>
+                    //     <td>123</td>
+                    //     <td>456</td>
+                    // </tr>
+                    // `;
+
+                },
+
+               
+
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // console.log('jqXHR',jqXHR);
+                    // console.log('textStatus',textStatus);
+                    // console.log('errorThrown',errorThrown);
+                },
+            });
+        })
+
+    </script>
+</body>
+
+</html>

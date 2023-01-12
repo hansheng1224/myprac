@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <h3 class="text-center">天氣預報資料</h3>
+    <ul id="myUl">
+
+    </ul>
+
+    <div class="container mt-3">
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th scope="col">序號</th>
+                <th scope="col">縣市</th>
+                <th scope="col">最低溫度</th>
+                <th scope="col">最高溫度</th>
+            </tr>
+        </thead>
+        <tbody id="Tbody">
+            
+           
+        </tbody>
+    </table>
+    </div>
+
+    
+      
+
+    <button id="myBtn">print</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"
+        integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script>
+        //https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-96D74FED-D94C-4F99-9DAF-249CA6907DA5
+
+        $(function () {
+
+            const myUl = $('#myUl');
+            const myBtn = $('#myBtn');
+            const Tbody = $('#Tbody');
+
+            myBtn.click(function () {
+                window.print();
+            });
+
+            //ajax 範本
+            $.ajax({
+                url: "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-96D74FED-D94C-4F99-9DAF-249CA6907DA5",
+                type: 'get',
+                dataType: 'json',
+                success: function (res) {
+                    // console.log('res',res);
+                    let data = res.records.location;
+                    // console.log('data',data);
+                    // console.log('data typeof',typeof(data));
+                    // console.log('data[0]',data[0]);
+                    // console.log('data[0].locationName',data[0].locationName);
+                    // console.log('data[0].locationName typeof',typeof(data[0].locationName));
+
+                    // console.log('data[19]',data[19]);
+                    // console.log('data[19].locationName',data[19].locationName);
+                    // console.log('data[21]',data[21]);
+                    // console.log('data[21].locationName',data[21].locationName);
+
+
+                    // console.log('data[19].weatherElement[2].time[0].parameter.parameterName',data[19].weatherElement[2].time[0].parameter.parameterName);
+                    // console.log('data[19].weatherElement[4].time[0].parameter.parameterName',data[19].weatherElement[4].time[0].parameter.parameterName);
+                    // console.log('data[21].weatherElement[2].time[0].parameter.parameterName',data[21].weatherElement[2].time[0].parameter.parameterName);
+                    // console.log('data[21].weatherElement[4].time[0].parameter.parameterName',data[21].weatherElement[4].time[0].parameter.parameterName);
+
+
+
+                    // $.each(data, function (key, value) {
+                    //     let mintmp = value.weatherElement[2].time[0].parameter.parameterName;
+                    //     let maxtmp = value.weatherElement[4].time[0].parameter.parameterName;
+                    //     // console.log(key);
+                    //     // console.log(value.locationName);
+                    //     let textContext = `
+                    //         ${key + 1} ${value.locationName} ${mintmp} - ${maxtmp}<br>
+                    //     `;
+
+
+                        $.each(data,function(key,value){
+                            // console.log(key);
+                            // console.log(value.locationName);
+                            let textContext = `
+                                <tr>
+                                    <td>${key+1}</td> 
+                                    <td>${value.locationName}</td>
+                                    <td>${value.weatherElement[2].time[0].parameter.parameterName}</td>
+                                    <td>${value.weatherElement[4].time[0].parameter.parameterName}</td>
+                                </tr>
+                            `;
+                        Tbody.append(textContext);
+                    })
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            //ajax end
+        });
+
+    </script>
+</body>
+
+</html>
